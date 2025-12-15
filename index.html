@@ -9,6 +9,15 @@
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
   body{background:#0b0b0b;color:#fff}
 
+  nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 40px; background:#1a1a1a; position:sticky; top:0; z-index:1000;
+  }
+  nav h1{color:#f5c77a;}
+  nav ul{list-style:none; display:flex; gap:20px;}
+  nav ul li a{color:#fff; text-decoration:none; font-weight:500;}
+  nav ul li a:hover{color:#f5c77a;}
+
   .hero{
     min-height:100vh;
     background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f');
@@ -52,60 +61,29 @@
   .service-card i{font-size:30px;color:#f5c77a;margin-bottom:10px}
   .service-card h4{margin-bottom:8px}
 
-  /* WhatsApp Floating Button */
-  .whatsapp-float{
-    position:fixed;
-    bottom:25px;
-    right:25px;
-    background:#25d366;
-    color:#fff;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:30px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.4);
-    z-index:1000;
-    text-decoration:none;
+  @media(max-width:768px){
+    .hero{padding:0 20px}
+    .hero h2{font-size:38px}
+    .services-preview{padding:30px 20px}
+    nav{flex-direction:column; gap:10px;}
   }
-  .whatsapp-float:hover{background:#1ebe5d}
-
-  /* AI Chatbot Floating Icon & Window */
-  #chat-icon { position: fixed; bottom:100px; right:25px; width:60px; height:60px; cursor:pointer; z-index:10000; }
-  #chat-icon img { width:100%; height:100%; border-radius:50%; box-shadow:0 4px 10px rgba(0,0,0,0.3); }
-
-  #ai-chatbot {
-    position: fixed; bottom:100px; right:25px; width:350px; max-width:90%; z-index:9999;
-    border-radius: 15px; overflow: hidden; display:none; flex-direction:column;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.3); font-family: Arial, sans-serif; animation:fadeIn 0.3s ease-in-out;
-  }
-  @keyframes fadeIn { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
-
-  #chat-header { background:#007BFF; color:#fff; font-weight:bold; padding:12px; cursor:pointer; text-align:center; border-bottom:1px solid #0056b3; }
-  #chat-body { background:#f9f9f9; height:300px; padding:12px; overflow-y:auto; display:flex; flex-direction:column; }
-  .message { margin:6px 0; padding:10px 14px; border-radius:20px; max-width:75%; word-wrap:break-word; line-height:1.4; animation:slideIn 0.2s ease; }
-  .message.user { background:#DCF8C6; align-self:flex-end; text-align:right; }
-  .message.bot { background:#E2E2E2; align-self:flex-start; text-align:left; }
-  @keyframes slideIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
-
-  .typing { width:40px; height:12px; background:#E2E2E2; border-radius:6px; margin:4px 0; align-self:flex-start; animation:blink 1s infinite; }
-  @keyframes blink { 0%,100% {opacity:0.3;} 50%{opacity:1;} }
-
-  #chat-input-container { display:flex; border-top:1px solid #ccc; background:#fff; }
-  #chat-input { flex:1; border:none; padding:10px; font-size:14px; }
-  #chat-input:focus { outline:none; }
-  #chat-send { background:#007BFF; color:#fff; border:none; padding:0 15px; cursor:pointer; transition: background 0.2s; }
-  #chat-send:hover { background:#0056b3; }
-
-  @media(max-width:768px){ .hero{padding:0 20px} .hero h2{font-size:38px} .services-preview{padding:30px 20px} }
-  @media(max-width:400px){ #ai-chatbot{width:90%; bottom:70px;} #chat-body{height:250px;} #chat-icon{bottom:70px; width:50px; height:50px;} }
 </style>
 </head>
 <body>
 
-<!-- Main Hero Section -->
+<!-- Navigation -->
+<nav>
+  <h1>BMGDollarsTech Hub</h1>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="ai-tech.html">AI & Tech</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
 <section class="hero">
   <h2>Your One‑Stop <span>Digital & Lifestyle</span> Hub</h2>
   <p>Technology, Fashion, Cosmetics, Kinyozi & Salon — powered by innovation and quality service.</p>
@@ -139,87 +117,14 @@
   </div>
 </section>
 
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/254700692492" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
-  <i class="fab fa-whatsapp"></i>
-</a>
+<!-- Footer -->
+<footer style="padding:20px;text-align:center;background:#1a1a1a;color:#f5c77a;">
+  © 2025 BMGDollarsTech Hub. All Rights Reserved.
+</footer>
 
-<!-- AI Chat Floating Icon -->
-<div id="chat-icon">
-  <img src="https://img.icons8.com/color/48/000000/chat--v1.png" alt="Chat" />
-</div>
-
-<!-- AI Chat Window -->
-<div id="ai-chatbot">
-  <div id="chat-header">Chat with us!</div>
-  <div id="chat-body"></div>
-  <div id="chat-input-container">
-    <input id="chat-input" type="text" placeholder="Type your message..." />
-    <button id="chat-send">Send</button>
-  </div>
-</div>
-
-<script>
-// Elements
-const chatContainer = document.getElementById("ai-chatbot");
-const chatHeader = document.getElementById("chat-header");
-const chatBody = document.getElementById("chat-body");
-const chatInput = document.getElementById("chat-input");
-const chatSend = document.getElementById("chat-send");
-const chatIcon = document.getElementById("chat-icon");
-
-// Toggle chat visibility
-chatIcon.onclick = () => { chatContainer.style.display = "flex"; chatIcon.style.display = "none"; }
-chatHeader.onclick = () => { chatContainer.style.display = "none"; chatIcon.style.display = "block"; }
-
-// Append message function
-function appendMessage(text, sender){
-  const msgDiv = document.createElement("div");
-  msgDiv.className = "message " + sender;
-  msgDiv.innerText = text;
-  chatBody.appendChild(msgDiv);
-  chatBody.scrollTop = chatBody.scrollHeight;
-}
-
-// Typing indicator
-function showTyping(){ const typingDiv=document.createElement("div"); typingDiv.className="typing"; typingDiv.id="typing-indicator"; chatBody.appendChild(typingDiv); chatBody.scrollTop=chatBody.scrollHeight; }
-function removeTyping(){ const typing=document.getElementById("typing-indicator"); if(typing) typing.remove(); }
-
-// Send message
-chatSend.onclick = async ()=>{
-  const msg = chatInput.value.trim();
-  if(!msg) return;
-  appendMessage(msg,"user");
-  chatInput.value='';
-  try{
-    showTyping();
-    const res = await fetch('/chat',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({message:msg, userId:"user123"})
-    });
-    const data = await res.json();
-    removeTyping();
-    appendMessage(data.reply,"bot");
-  } catch(err){
-    removeTyping();
-    appendMessage("Sorry, something went wrong.","bot");
-  }
-};
-
-// Send on Enter
-chatInput.addEventListener("keypress", function(e){ if(e.key==="Enter"){ chatSend.click(); e.preventDefault(); } });
-
-// Auto-greeting once per session
-window.addEventListener('load', () => {
-  if(!sessionStorage.getItem('greeted')){
-    chatContainer.style.display="flex";
-    chatIcon.style.display="none";
-    appendMessage("Hello! 👋 How can we help you today?", "bot");
-    sessionStorage.setItem('greeted', 'true');
-  }
-});
-</script>
+<!-- Floating Buttons and AI Chat -->
+<!-- Paste the floating chat/WhatsApp snippet here (from the previous message) -->
+<!-- This includes: WhatsApp floating, chat icon, chat window, styles, and JS -->
 
 </body>
 </html>
