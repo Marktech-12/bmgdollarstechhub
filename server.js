@@ -1,10 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
 import OpenAI from "openai";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
+app.use(cors()); // allow cross-origin requests
 app.use(express.json());
 app.use(express.static("public"));
 
@@ -20,6 +22,8 @@ app.post("/chat", async (req, res) => {
     if (!memory[userId]) memory[userId] = [];
     memory[userId].push({ role: "user", content: message });
 
+    console.log("User:", userId, "Message:", message);
+
     const response = await client.chat.completions.create({
       model: "gpt-4.1-mini",
       messages: [
@@ -29,7 +33,7 @@ app.post("/chat", async (req, res) => {
 You are BMGDollarsTech Hub AI Assistant.
 You provide info on Tech, AI, Fashion, Cosmetics, and Salon services.
 Be friendly, professional, and promote the brand naturally.
-        `,
+          `,
         },
         ...memory[userId],
       ],
@@ -39,7 +43,7 @@ Be friendly, professional, and promote the brand naturally.
     memory[userId].push({ role: "assistant", content: aiMessage });
     res.json({ reply: aiMessage });
   } catch (err) {
-    console.error(err);
+    console.error("AI Error:", err);
     res.status(500).json({ reply: "AI error. Try again." });
   }
 });
