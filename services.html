@@ -35,10 +35,30 @@
     text-align:center;
     transition: transform 0.3s;
   }
-  .service-card:hover{transform: translateY(-10px)}
-  .service-card i{font-size:40px;color:#f5c77a;margin-bottom:15px}
-  .service-card h3{margin-bottom:10px;font-size:22px}
-  .service-card p{color:#ddd;font-size:16px}
+  .service-card:hover{transform: translateY(-10px);}
+  .service-card i{font-size:40px;color:#f5c77a;margin-bottom:15px;}
+  .service-card h3{margin-bottom:10px;font-size:22px;}
+  .service-card p{color:#ddd;font-size:16px;}
+
+  /* WhatsApp Floating Button */
+  .whatsapp-float{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:#25d366;
+    color:#fff;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+    z-index:1000;
+    text-decoration:none;
+  }
+  .whatsapp-float:hover{background:#1ebe5d}
 
   @media(max-width:768px){
     header{padding:40px 20px}
@@ -61,32 +81,33 @@
   </ul>
 </nav>
 
-<!-- Main Content -->
+<!-- Header -->
 <header>
   <h2>Our Services</h2>
   <p>Explore the wide range of services offered by BMGDollarsTech Hub — crafted for quality, innovation, and style.</p>
 </header>
 
+<!-- Services Section -->
 <section class="services-container">
   <div class="service-card">
     <i class="fas fa-laptop-code"></i>
     <h3>Tech & AI</h3>
-    <p>Advanced tech solutions, AI tools, and modern digital services to boost your business.</p>
+    <p>Modern tech solutions, AI tools, and digital services to empower businesses.</p>
   </div>
   <div class="service-card">
     <i class="fas fa-tshirt"></i>
     <h3>Fashion</h3>
-    <p>Trendy outfits and personalized fashion services that fit every style and occasion.</p>
+    <p>Trendy outfits and personalized fashion services for all occasions.</p>
   </div>
   <div class="service-card">
     <i class="fas fa-spray-can-sparkles"></i>
     <h3>Cosmetics</h3>
-    <p>High-quality beauty products and cosmetic services to enhance confidence and charm.</p>
+    <p>High-quality beauty products and cosmetic services to inspire confidence.</p>
   </div>
   <div class="service-card">
     <i class="fas fa-scissors"></i>
     <h3>Kinyozi & Salon</h3>
-    <p>Professional grooming, haircuts, and salon services tailored for modern looks.</p>
+    <p>Professional grooming, haircuts, and salon services for modern looks.</p>
   </div>
 </section>
 
@@ -95,8 +116,10 @@
   © 2025 BMGDollarsTech Hub. All Rights Reserved.
 </footer>
 
-<!-- Floating Buttons and AI Chat -->
-<!-- Paste the floating chat/WhatsApp snippet here (same as index.html) -->
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/254700692492" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
 </body>
 </html>
