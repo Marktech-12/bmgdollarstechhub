@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop – BMGDollarsTech Hub</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+    body{background:#0b0b0b;color:#fff}
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 60px;
+      background:#111;
+    }
+    nav h1{color:#f5c77a;font-size:26px;letter-spacing:1px}
+    nav ul{display:flex;gap:25px;list-style:none}
+    nav ul li a{color:#fff;text-decoration:none;font-weight:500}
+    nav ul li a:hover{color:#f5c77a}
+
+    header{padding:60px 60px;text-align:center}
+    header h2{font-size:42px;margin-bottom:15px;color:#f5c77a}
+    header p{font-size:18px;color:#ddd}
+
+    .products-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+      padding:40px 60px;
+    }
+    .product-card{
+      background:#1a1a1a;
+      border-radius:15px;
+      overflow:hidden;
+      text-align:center;
+      transition: transform 0.3s;
+    }
+    .product-card:hover{transform: translateY(-10px)}
+    .product-card img{width:100%;height:200px;object-fit:cover}
+    .product-card h3{margin:15px 0 5px;color:#f5c77a}
+    .product-card p{color:#ddd;margin-bottom:10px}
+    .product-card .price{font-weight:bold;color:#f5c77a;margin-bottom:10px}
+    .product-card a{
+      display:inline-block;
+      margin-bottom:15px;
+      padding:10px 20px;
+      background:#f5c77a;
+      color:#000;
+      text-decoration:none;
+      border-radius:20px;
+      font-weight:600;
+    }
+    .product-card a:hover{background:#e0b14a}
+
+    footer{
+      text-align:center;
+      padding:20px;
+      font-size:14px;
+      background:#000;
+      color:#aaa;
+    }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float{
+      position:fixed;
+      bottom:25px;
+      right:25px;
+      background:#25d366;
+      color:#fff;
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:30px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.4);
+      z-index:1000;
+      text-decoration:none;
+    }
+    .whatsapp-float:hover{background:#1ebe5d}
+
+    @media(max-width:768px){nav{padding:20px}header{padding:40px 20px}.products-container{padding:20px}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <h1>BMGDollarsTech Hub</h1>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="#">Shop</a></li>
+    <li><a href="#">AI & Tech</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<header>
+  <h2>Online Shop</h2>
+  <p>Check out our premium Fashion and Cosmetics products available now.</p>
+</header>
+
+<section class="products-container">
+  <div class="product-card">
+    <img src="https://images.unsplash.com/photo-1600185360125-45d0e8d6f8d5" alt="Fashion Product">
+    <h3>Stylish Jacket</h3>
+    <p>Premium quality fashion wear</p>
+    <div class="price">$50</div>
+    <a href="https://wa.me/254700692492?text=I%20want%20to%20buy%20Stylish%20Jacket">Buy Now</a>
+  </div>
+
+  <div class="product-card">
+    <img src="https://images.unsplash.com/photo-1600185360125-45d0e8d6f8d5" alt="Cosmetics Product">
+    <h3>Beauty Cream</h3>
+    <p>Glow & radiance for your skin</p>
+    <div class="price">$25</div>
+    <a href="https://wa.me/254700692492?text=I%20want%20to%20buy%20Beauty%20Cream">Buy Now</a>
+  </div>
+
+  <!-- Add more products here -->
+</section>
+
+<footer>
+  © 2025 BMGDollarsTech Hub. All Rights Reserved.
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/254700692492" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+</body>
+</html>
