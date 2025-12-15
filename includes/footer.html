@@ -1,3 +1,4 @@
+
 <footer>
   © 2025 BMGDollarsTech Hub. All Rights Reserved.
 </footer>
@@ -6,3 +7,117 @@
 <a href="https://wa.me/254700692492" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
+
+<!-- Minimized AI Chatbot Icon -->
+<div id="chat-icon">
+  <img src="https://img.icons8.com/color/48/000000/chat--v1.png" alt="Chat" />
+</div>
+
+<!-- Chatbot Window -->
+<div id="ai-chatbot">
+  <div id="chat-header">Chat with us!</div>
+  <div id="chat-body"></div>
+  <div id="chat-input-container">
+    <input id="chat-input" type="text" placeholder="Type your message..." />
+    <button id="chat-send">Send</button>
+  </div>
+</div>
+
+<style>
+/* Chat icon */
+#chat-icon { position: fixed; bottom: 80px; right: 20px; width: 60px; height: 60px; cursor: pointer; z-index: 10000; }
+#chat-icon img { width: 100%; height: 100%; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+
+/* Chat container */
+#ai-chatbot {
+  position: fixed; bottom: 80px; right: 20px; width: 350px; max-width: 90%; z-index: 9999;
+  border-radius: 15px; overflow: hidden; display: none; flex-direction: column;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3); font-family: Arial, sans-serif; animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+
+/* Header */
+#chat-header { background:#007BFF; color:#fff; font-weight:bold; padding:12px; cursor:pointer; text-align:center; border-bottom:1px solid #0056b3; }
+
+/* Chat body */
+#chat-body { background:#f9f9f9; height:300px; padding:12px; overflow-y:auto; display:flex; flex-direction:column; }
+
+/* Messages */
+.message { margin:6px 0; padding:10px 14px; border-radius:20px; max-width:75%; word-wrap:break-word; line-height:1.4; animation: slideIn 0.2s ease; }
+.message.user { background:#DCF8C6; align-self:flex-end; text-align:right; }
+.message.bot { background:#E2E2E2; align-self:flex-start; text-align:left; }
+
+@keyframes slideIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
+
+/* Typing indicator */
+.typing { width:40px; height:12px; background:#E2E2E2; border-radius:6px; margin:4px 0; align-self:flex-start; animation:blink 1s infinite; }
+@keyframes blink { 0%,100% {opacity:0.3;} 50%{opacity:1;} }
+
+/* Input */
+#chat-input-container { display:flex; border-top:1px solid #ccc; background:#fff; }
+#chat-input { flex:1; border:none; padding:10px; font-size:14px; }
+#chat-input:focus { outline:none; }
+#chat-send { background:#007BFF; color:#fff; border:none; padding:0 15px; cursor:pointer; transition: background 0.2s; }
+#chat-send:hover { background:#0056b3; }
+
+/* Responsive */
+@media(max-width:400px){ #ai-chatbot { width:90%; bottom:70px; } #chat-body { height:250px; } #chat-icon{ bottom:70px; width:50px; height:50px; } }
+</style>
+
+<script>
+const chatContainer = document.getElementById("ai-chatbot");
+const chatHeader = document.getElementById("chat-header");
+const chatBody = document.getElementById("chat-body");
+const chatInput = document.getElementById("chat-input");
+const chatSend = document.getElementById("chat-send");
+const chatIcon = document.getElementById("chat-icon");
+
+// Toggle chat visibility
+chatIcon.onclick = () => { chatContainer.style.display = "flex"; chatIcon.style.display = "none"; }
+chatHeader.onclick = () => { chatContainer.style.display = "none"; chatIcon.style.display = "block"; }
+
+// Append message function
+function appendMessage(text, sender){
+  const msgDiv = document.createElement("div");
+  msgDiv.className = "message " + sender;
+  msgDiv.innerText = text;
+  chatBody.appendChild(msgDiv);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// Typing indicator
+function showTyping(){ const typingDiv=document.createElement("div"); typingDiv.className="typing"; typingDiv.id="typing-indicator"; chatBody.appendChild(typingDiv); chatBody.scrollTop=chatBody.scrollHeight; }
+function removeTyping(){ const typing=document.getElementById("typing-indicator"); if(typing) typing.remove(); }
+
+// Send message
+chatSend.onclick = async ()=>{
+  const msg = chatInput.value.trim();
+  if(!msg) return;
+  appendMessage(msg,"user");
+  chatInput.value='';
+  try{
+    showTyping();
+    const res = await fetch('/chat',{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message:msg})});
+    const data = await res.json();
+    removeTyping();
+    appendMessage(data.reply,"bot");
+  } catch(err){
+    removeTyping();
+    appendMessage("Sorry, something went wrong.","bot");
+  }
+};
+
+// Send on Enter
+chatInput.addEventListener("keypress", function(e){ if(e.key==="Enter"){ chatSend.click(); e.preventDefault(); } });
+
+// Auto-greeting once per session
+window.addEventListener('load', () => {
+  if(!sessionStorage.getItem('greeted')){
+    chatContainer.style.display="flex";
+    chatIcon.style.display="none";
+    appendMessage("Hello! 👋 How can we help you today?", "bot");
+    sessionStorage.setItem('greeted', 'true');
+  }
+});
+</script>
