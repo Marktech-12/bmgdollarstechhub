@@ -1,106 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI & Tech – BMGDollarsTech Hub</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-    body{background:#0b0b0b;color:#fff}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI & Tech – BMGDollarsTech Hub</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+  body{background:#0b0b0b;color:#fff}
 
-    header{padding:60px 60px;text-align:center}
-    header h2{font-size:42px;margin-bottom:15px;color:#f5c77a}
-    header p{font-size:18px;color:#ddd}
+  nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 40px; background:#1a1a1a; position:sticky; top:0; z-index:1000;
+  }
+  nav h1{color:#f5c77a;}
+  nav ul{list-style:none; display:flex; gap:20px;}
+  nav ul li a{color:#fff; text-decoration:none; font-weight:500;}
+  nav ul li a:hover{color:#f5c77a;}
 
-    .tech-container{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:20px;
-      padding:40px 60px;
-    }
-    .tech-card{
-      background:#1a1a1a;
-      border-radius:15px;
-      text-align:center;
-      padding:25px;
-      transition: transform 0.3s;
-    }
-    .tech-card:hover{transform: translateY(-10px)}
-    .tech-card i{font-size:40px;color:#f5c77a;margin-bottom:15px}
-    .tech-card h3{margin-bottom:10px;font-size:22px}
-    .tech-card p{color:#ddd;font-size:16px}
+  header{padding:60px 60px;text-align:center}
+  header h2{font-size:42px;margin-bottom:15px;color:#f5c77a}
+  header p{font-size:18px;color:#ddd}
 
-    /* WhatsApp Floating Button */
-    .whatsapp-float{
-      position:fixed;
-      bottom:25px;
-      right:25px;
-      background:#25d366;
-      color:#fff;
-      width:60px;
-      height:60px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:30px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.4);
-      z-index:1000;
-      text-decoration:none;
-    }
-    .whatsapp-float:hover{background:#1ebe5d}
+  .ai-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:40px 60px;
+  }
+  .ai-card{
+    background:#1a1a1a;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    transition: transform 0.3s;
+  }
+  .ai-card:hover{transform: translateY(-10px);}
+  .ai-card i{font-size:40px;color:#f5c77a;margin-bottom:15px;}
+  .ai-card h3{margin-bottom:10px;font-size:22px;}
+  .ai-card p{color:#ddd;font-size:16px;}
 
-    @media(max-width:768px){header{padding:40px 20px}.tech-container{padding:20px}}
-  </style>
+  /* WhatsApp Floating Button */
+  .whatsapp-float{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:#25d366;
+    color:#fff;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+    z-index:1000;
+    text-decoration:none;
+  }
+  .whatsapp-float:hover{background:#1ebe5d}
+
+  @media(max-width:768px){
+    header{padding:40px 20px}
+    .ai-container{padding:20px}
+    nav{flex-direction:column; gap:10px;}
+  }
+</style>
 </head>
 <body>
 
-<!-- Main Content -->
+<!-- Navigation -->
+<nav>
+  <h1>BMGDollarsTech Hub</h1>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="ai-tech.html">AI & Tech</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Header -->
 <header>
-  <h2>AI & Tech Services</h2>
-  <p>Explore our innovative technology and AI-powered solutions for businesses and individuals.</p>
+  <h2>AI & Tech Solutions</h2>
+  <p>Explore the cutting-edge technology and AI services offered by BMGDollarsTech Hub.</p>
 </header>
 
-<section class="tech-container">
-  <div class="tech-card">
+<!-- AI & Tech Services Section -->
+<section class="ai-container">
+  <div class="ai-card">
     <i class="fas fa-robot"></i>
-    <h3>AI Solutions</h3>
-    <p>Intelligent AI tools and automation to improve productivity and decision-making.</p>
+    <h3>AI Development</h3>
+    <p>Custom AI solutions for businesses, automation, and intelligent systems.</p>
   </div>
-  <div class="tech-card">
+  <div class="ai-card">
+    <i class="fas fa-laptop-code"></i>
+    <h3>Software Solutions</h3>
+    <p>Web, mobile, and desktop applications tailored to your needs.</p>
+  </div>
+  <div class="ai-card">
     <i class="fas fa-network-wired"></i>
-    <h3>Tech Consulting</h3>
-    <p>Professional guidance for implementing modern tech solutions in your business.</p>
+    <h3>Networking & Security</h3>
+    <p>Secure network setup, IT infrastructure, and cybersecurity services.</p>
   </div>
-  <div class="tech-card">
-    <i class="fas fa-code"></i>
-    <h3>Web & App Development</h3>
-    <p>Custom websites and apps built with latest technologies for high performance.</p>
-  </div>
-  <div class="tech-card">
+  <div class="ai-card">
     <i class="fas fa-cloud"></i>
-    <h3>Cloud Solutions</h3>
-    <p>Secure cloud storage, hosting, and scalable infrastructure for your projects.</p>
+    <h3>Cloud Services</h3>
+    <p>Cloud storage, hosting, and scalable solutions for modern enterprises.</p>
   </div>
 </section>
 
-<!-- Script to load shared header and footer -->
-<script>
-  // Load header
-  fetch('includes/header.html')
-    .then(response => response.text())
-    .then(data => {
-      document.body.insertAdjacentHTML('afterbegin', data);
-    });
+<!-- Footer -->
+<footer style="padding:20px;text-align:center;background:#1a1a1a;color:#f5c77a;">
+  © 2025 BMGDollarsTech Hub. All Rights Reserved.
+</footer>
 
-  // Load footer
-  fetch('includes/footer.html')
-    .then(response => response.text())
-    .then(data => {
-      document.body.insertAdjacentHTML('beforeend', data);
-    });
-</script>
+<!-- Floating Buttons and AI Chat -->
+<!-- Same as index.html -->
+<a href="https://wa.me/254700692492" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
 </body>
 </html>
