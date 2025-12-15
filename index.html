@@ -1,87 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BMGDollarsTech Hub</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-    body{background:#0b0b0b;color:#fff}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BMGDollarsTech Hub</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+  body{background:#0b0b0b;color:#fff}
 
-    .hero{
-      min-height:100vh;
-      background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f');
-      background-size:cover;
-      background-position:center;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      padding:0 60px;
-      max-width:900px;
-      margin:auto;
-    }
-    .hero h2{font-size:52px;line-height:1.2;margin-bottom:20px}
-    .hero span{color:#f5c77a}
-    .hero p{font-size:18px;color:#ddd;margin-bottom:30px}
-    .hero-buttons a{
-      display:inline-block;
-      margin-right:15px;
-      padding:14px 30px;
-      border-radius:30px;
-      text-decoration:none;
-      font-weight:600;
-    }
-    .btn-primary{background:#f5c77a;color:#000}
-    .btn-secondary{border:2px solid #f5c77a;color:#f5c77a}
-    .btn-secondary:hover{background:#f5c77a;color:#000}
+  .hero{
+    min-height:100vh;
+    background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:0 60px;
+    max-width:900px;
+    margin:auto;
+  }
+  .hero h2{font-size:52px;line-height:1.2;margin-bottom:20px}
+  .hero span{color:#f5c77a}
+  .hero p{font-size:18px;color:#ddd;margin-bottom:30px}
+  .hero-buttons a{
+    display:inline-block;
+    margin-right:15px;
+    padding:14px 30px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+  }
+  .btn-primary{background:#f5c77a;color:#000}
+  .btn-secondary{border:2px solid #f5c77a;color:#f5c77a}
+  .btn-secondary:hover{background:#f5c77a;color:#000}
 
-    .services-preview{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-      gap:20px;
-      padding:40px 60px;
-      background:#111;
-    }
-    .service-card{
-      background:#1a1a1a;
-      padding:25px;
-      border-radius:15px;
-      text-align:center;
-    }
-    .service-card i{font-size:30px;color:#f5c77a;margin-bottom:10px}
-    .service-card h4{margin-bottom:8px}
+  .services-preview{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    padding:40px 60px;
+    background:#111;
+  }
+  .service-card{
+    background:#1a1a1a;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+  }
+  .service-card i{font-size:30px;color:#f5c77a;margin-bottom:10px}
+  .service-card h4{margin-bottom:8px}
 
-    /* WhatsApp Floating Button */
-    .whatsapp-float{
-      position:fixed;
-      bottom:25px;
-      right:25px;
-      background:#25d366;
-      color:#fff;
-      width:60px;
-      height:60px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:30px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.4);
-      z-index:1000;
-      text-decoration:none;
-    }
-    .whatsapp-float:hover{background:#1ebe5d}
+  /* Chatbot */
+  .chatbot-section{padding:50px 20px; background:#0d0d0d; text-align:center}
+  .chat-container{
+    max-width:500px; 
+    margin:0 auto; 
+    background:#1a1a1a; 
+    padding:20px; 
+    border-radius:15px; 
+    display:flex; 
+    flex-direction:column;
+  }
+  .chat-box{
+    height:300px; 
+    overflow-y:auto; 
+    border:1px solid #333; 
+    padding:10px; 
+    border-radius:10px;
+    margin-bottom:10px;
+  }
+  .chat-box p{margin:5px 0;}
+  input{
+    width:calc(100% - 22px); 
+    padding:10px; 
+    border-radius:10px; 
+    border:none;
+    margin-bottom:10px;
+  }
+  button{
+    width:100%; 
+    padding:10px; 
+    border:none; 
+    border-radius:10px; 
+    background:#f5c77a; 
+    color:#000; 
+    font-weight:bold; 
+    cursor:pointer;
+  }
 
-    @media(max-width:768px){
-      .hero{padding:0 20px}
-      .hero h2{font-size:38px}
-      .services-preview{padding:30px 20px}
-    }
-  </style>
+  /* WhatsApp Floating Button */
+  .whatsapp-float{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:#25d366;
+    color:#fff;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+    z-index:1000;
+    text-decoration:none;
+  }
+  .whatsapp-float:hover{background:#1ebe5d}
+
+  @media(max-width:768px){
+    .hero{padding:0 20px}
+    .hero h2{font-size:38px}
+    .services-preview{padding:30px 20px}
+  }
+</style>
 </head>
 <body>
 
-<!-- Main Content -->
+<!-- Main Hero Section -->
 <section class="hero">
   <h2>Your One‑Stop <span>Digital & Lifestyle</span> Hub</h2>
   <p>Technology, Fashion, Cosmetics, Kinyozi & Salon — powered by innovation and quality service.</p>
@@ -91,6 +129,7 @@
   </div>
 </section>
 
+<!-- Services Preview -->
 <section class="services-preview">
   <div class="service-card">
     <i class="fas fa-laptop-code"></i>
@@ -114,21 +153,56 @@
   </div>
 </section>
 
-<!-- Script to load shared header and footer -->
-<script>
-  // Load header
-  fetch('includes/header.html')
-    .then(response => response.text())
-    .then(data => {
-      document.body.insertAdjacentHTML('afterbegin', data);
-    });
+<!-- Chatbot Section -->
+<section class="chatbot-section">
+  <h2 style="color:#f5c77a; margin-bottom:20px;">Chat with Our AI Assistant</h2>
+  <div class="chat-container">
+    <div class="chat-box" id="chatBox"></div>
+    <input type="text" id="userInput" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</section>
 
-  // Load footer
-  fetch('includes/footer.html')
-    .then(response => response.text())
-    .then(data => {
-      document.body.insertAdjacentHTML('beforeend', data);
-    });
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/254700692492" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Chatbot Script -->
+<script>
+function sendMessage() {
+  const input = document.getElementById('userInput');
+  const chatBox = document.getElementById('chatBox');
+  const userText = input.value.trim();
+  if(userText === '') return;
+
+  // User message
+  const userMsg = document.createElement('p');
+  userMsg.style.textAlign = 'right';
+  userMsg.style.color = '#f5c77a';
+  userMsg.innerText = userText;
+  chatBox.appendChild(userMsg);
+
+  input.value = '';
+
+  // Bot response
+  const botMsg = document.createElement('p');
+  botMsg.style.textAlign = 'left';
+  botMsg.style.color = '#25d366';
+  botMsg.innerText = getBotResponse(userText);
+  chatBox.appendChild(botMsg);
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function getBotResponse(message) {
+  message = message.toLowerCase();
+  if(message.includes('hello')) return 'Hello! How can I assist you today?';
+  if(message.includes('services')) return 'We offer Tech, AI, Fashion, Cosmetics, and Salon services.';
+  if(message.includes('shop')) return 'Check out our shop page for products!';
+  if(message.includes('contact')) return 'You can reach us via WhatsApp or email on the Contact page.';
+  return "I'm still learning! Can you rephrase?";
+}
 </script>
 
 </body>
