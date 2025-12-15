@@ -8,41 +8,22 @@
   <style>
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
     body{background:#0b0b0b;color:#fff}
-    header{
+
+    .hero{
       min-height:100vh;
       background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f');
       background-size:cover;
       background-position:center;
       display:flex;
       flex-direction:column;
-    }
-    nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:20px 60px;
-    }
-    nav h1{color:#f5c77a;font-size:26px;letter-spacing:1px}
-    nav ul{display:flex;gap:25px;list-style:none}
-    nav ul li a{color:#fff;text-decoration:none;font-weight:500}
-    nav ul li a:hover{color:#f5c77a}
-
-    .hero{
-      flex:1;
-      display:flex;
-      flex-direction:column;
       justify-content:center;
       padding:0 60px;
       max-width:900px;
+      margin:auto;
     }
-    .hero h2{
-      font-size:52px;
-      line-height:1.2;
-      margin-bottom:20px;
-    }
+    .hero h2{font-size:52px;line-height:1.2;margin-bottom:20px}
     .hero span{color:#f5c77a}
     .hero p{font-size:18px;color:#ddd;margin-bottom:30px}
-
     .hero-buttons a{
       display:inline-block;
       margin-right:15px;
@@ -51,14 +32,8 @@
       text-decoration:none;
       font-weight:600;
     }
-    .btn-primary{
-      background:#f5c77a;
-      color:#000;
-    }
-    .btn-secondary{
-      border:2px solid #f5c77a;
-      color:#f5c77a;
-    }
+    .btn-primary{background:#f5c77a;color:#000}
+    .btn-secondary{border:2px solid #f5c77a;color:#f5c77a}
     .btn-secondary:hover{background:#f5c77a;color:#000}
 
     .services-preview{
@@ -76,20 +51,6 @@
     }
     .service-card i{font-size:30px;color:#f5c77a;margin-bottom:10px}
     .service-card h4{margin-bottom:8px}
-    footer{
-      text-align:center;
-      padding:20px;
-      font-size:14px;
-      background:#000;
-      color:#aaa;
-    }
-
-    @media(max-width:768px){
-      nav{padding:20px}
-      .hero{padding:0 20px}
-      .hero h2{font-size:38px}
-      .services-preview{padding:30px 20px}
-    }
 
     /* WhatsApp Floating Button */
     .whatsapp-float{
@@ -110,31 +71,25 @@
       text-decoration:none;
     }
     .whatsapp-float:hover{background:#1ebe5d}
+
+    @media(max-width:768px){
+      .hero{padding:0 20px}
+      .hero h2{font-size:38px}
+      .services-preview{padding:30px 20px}
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <nav>
-    <h1>BMGDollarsTech Hub</h1>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-  <li><a href="services.html">Services</a></li>
-  <li><a href="shop.html">Shop</a></li>
-  <li><a href="ai-tech.html">AI & Tech</a></li>
-  <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-
-  <section class="hero">
-    <h2>Your One‑Stop <span>Digital & Lifestyle</span> Hub</h2>
-    <p>Technology, Fashion, Cosmetics, Kinyozi & Salon — powered by innovation and quality service.</p>
-    <div class="hero-buttons">
-      <a href="#" class="btn-primary">Explore Services</a>
-      <a href="#" class="btn-secondary">Visit Shop</a>
-    </div>
-  </section>
-</header>
+<!-- Main Content -->
+<section class="hero">
+  <h2>Your One‑Stop <span>Digital & Lifestyle</span> Hub</h2>
+  <p>Technology, Fashion, Cosmetics, Kinyozi & Salon — powered by innovation and quality service.</p>
+  <div class="hero-buttons">
+    <a href="services.html" class="btn-primary">Explore Services</a>
+    <a href="shop.html" class="btn-secondary">Visit Shop</a>
+  </div>
+</section>
 
 <section class="services-preview">
   <div class="service-card">
@@ -159,14 +114,22 @@
   </div>
 </section>
 
-<footer>
-  © 2025 BMGDollarsTech Hub. All Rights Reserved.
-</footer>
+<!-- Script to load shared header and footer -->
+<script>
+  // Load header
+  fetch('includes/header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.body.insertAdjacentHTML('afterbegin', data);
+    });
 
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/254700692492" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
-  <i class="fab fa-whatsapp"></i>
-</a>
+  // Load footer
+  fetch('includes/footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.body.insertAdjacentHTML('beforeend', data);
+    });
+</script>
 
 </body>
 </html>
