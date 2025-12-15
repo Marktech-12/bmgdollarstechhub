@@ -8,17 +8,6 @@
   <style>
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
     body{background:#0b0b0b;color:#fff}
-    nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:20px 60px;
-      background:#111;
-    }
-    nav h1{color:#f5c77a;font-size:26px;letter-spacing:1px}
-    nav ul{display:flex;gap:25px;list-style:none}
-    nav ul li a{color:#fff;text-decoration:none;font-weight:500}
-    nav ul li a:hover{color:#f5c77a}
 
     header{padding:60px 60px;text-align:center}
     header h2{font-size:42px;margin-bottom:15px;color:#f5c77a}
@@ -42,14 +31,6 @@
     .tech-card h3{margin-bottom:10px;font-size:22px}
     .tech-card p{color:#ddd;font-size:16px}
 
-    footer{
-      text-align:center;
-      padding:20px;
-      font-size:14px;
-      background:#000;
-      color:#aaa;
-    }
-
     /* WhatsApp Floating Button */
     .whatsapp-float{
       position:fixed;
@@ -70,23 +51,12 @@
     }
     .whatsapp-float:hover{background:#1ebe5d}
 
-    @media(max-width:768px){nav{padding:20px}header{padding:40px 20px}.tech-container{padding:20px}}
+    @media(max-width:768px){header{padding:40px 20px}.tech-container{padding:20px}}
   </style>
 </head>
 <body>
 
-<nav>
-  <h1>BMGDollarsTech Hub</h1>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="shop.html">Shop</a></li>
-    <li><a href="#">AI & Tech</a></li>
-    <li><a href="contact.html">Contact</a></li>
-
-  </ul>
-</nav>
-
+<!-- Main Content -->
 <header>
   <h2>AI & Tech Services</h2>
   <p>Explore our innovative technology and AI-powered solutions for businesses and individuals.</p>
@@ -115,14 +85,22 @@
   </div>
 </section>
 
-<footer>
-  © 2025 BMGDollarsTech Hub. All Rights Reserved.
-</footer>
+<!-- Script to load shared header and footer -->
+<script>
+  // Load header
+  fetch('includes/header.html')
+    .then(response => response.text())
+    .then(data => {
+      document.body.insertAdjacentHTML('afterbegin', data);
+    });
 
-<!-- WhatsApp Floating Button -->
-<a href="https://wa.me/254700692492" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
-  <i class="fab fa-whatsapp"></i>
-</a>
+  // Load footer
+  fetch('includes/footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.body.insertAdjacentHTML('beforeend', data);
+    });
+</script>
 
 </body>
 </html>
