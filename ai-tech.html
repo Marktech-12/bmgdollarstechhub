@@ -9,6 +9,7 @@
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
   body{background:#0b0b0b;color:#fff}
 
+  /* Navigation */
   nav{
     display:flex; justify-content:space-between; align-items:center;
     padding:20px 40px; background:#1a1a1a; position:sticky; top:0; z-index:1000;
@@ -22,25 +23,11 @@
   header h2{font-size:42px;margin-bottom:15px;color:#f5c77a}
   header p{font-size:18px;color:#ddd}
 
-  .ai-container{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-    padding:40px 60px;
-  }
-  .ai-card{
-    background:#1a1a1a;
-    padding:25px;
-    border-radius:15px;
-    text-align:center;
-    transition: transform 0.3s;
-  }
-  .ai-card:hover{transform: translateY(-10px);}
-  .ai-card i{font-size:40px;color:#f5c77a;margin-bottom:15px;}
-  .ai-card h3{margin-bottom:10px;font-size:22px;}
-  .ai-card p{color:#ddd;font-size:16px;}
+  .content-section{padding:40px 60px; background:#111; border-radius:15px; margin:20px auto; max-width:900px;}
+  .content-section h3{color:#f5c77a;margin-bottom:15px;}
+  .content-section p{color:#ddd;margin-bottom:12px; line-height:1.5;}
 
-  /* WhatsApp Floating Button */
+  /* Floating Buttons */
   .whatsapp-float{
     position:fixed;
     bottom:25px;
@@ -60,10 +47,39 @@
   }
   .whatsapp-float:hover{background:#1ebe5d}
 
+  /* Chatbot Icon & Window */
+  #chat-icon { position: fixed; bottom:100px; right:25px; width:60px; height:60px; cursor:pointer; z-index:10000; }
+  #chat-icon img { width:100%; height:100%; border-radius:50%; box-shadow:0 4px 10px rgba(0,0,0,0.3); }
+
+  #ai-chatbot {
+    position: fixed; bottom:100px; right:25px; width:350px; max-width:90%; z-index:9999;
+    border-radius:15px; overflow:hidden; display:none; flex-direction:column;
+    box-shadow:0 8px 25px rgba(0,0,0,0.3); font-family:Arial, sans-serif; background:#1a1a1a;
+  }
+  #chat-header { background:#007BFF; color:#fff; font-weight:bold; padding:12px; cursor:pointer; text-align:center; border-bottom:1px solid #0056b3; }
+  #chat-body { background:#f9f9f9; height:300px; padding:12px; overflow-y:auto; display:flex; flex-direction:column; }
+  .message { margin:6px 0; padding:10px 14px; border-radius:20px; max-width:75%; word-wrap:break-word; line-height:1.4; }
+  .message.user { background:#DCF8C6; align-self:flex-end; text-align:right; }
+  .message.bot { background:#E2E2E2; align-self:flex-start; text-align:left; }
+  .typing { width:40px; height:12px; background:#E2E2E2; border-radius:6px; margin:4px 0; align-self:flex-start; animation:blink 1s infinite; }
+  @keyframes blink { 0%,100% {opacity:0.3;} 50%{opacity:1;} }
+  #chat-input-container { display:flex; border-top:1px solid #ccc; background:#fff; }
+  #chat-input { flex:1; border:none; padding:10px; font-size:14px; }
+  #chat-input:focus { outline:none; }
+  #chat-send { background:#007BFF; color:#fff; border:none; padding:0 15px; cursor:pointer; transition: background 0.2s; }
+  #chat-send:hover { background:#0056b3; }
+
+  footer{padding:20px;text-align:center;background:#1a1a1a;color:#f5c77a; margin-top:40px;}
+
   @media(max-width:768px){
     header{padding:40px 20px}
-    .ai-container{padding:20px}
+    .content-section{padding:30px 20px;}
     nav{flex-direction:column; gap:10px;}
+  }
+  @media(max-width:400px){
+    #ai-chatbot{width:90%; bottom:90px;} 
+    #chat-body{height:250px;} 
+    #chat-icon{bottom:90px; width:50px; height:50px;}
   }
 </style>
 </head>
@@ -83,44 +99,103 @@
 
 <!-- Header -->
 <header>
-  <h2>AI & Tech Solutions</h2>
-  <p>Explore the cutting-edge technology and AI services offered by BMGDollarsTech Hub.</p>
+  <h2>AI & Tech Services</h2>
+  <p>Discover the latest technology, AI solutions, and digital services offered by BMGDollarsTech Hub.</p>
 </header>
 
-<!-- AI & Tech Services Section -->
-<section class="ai-container">
-  <div class="ai-card">
-    <i class="fas fa-robot"></i>
-    <h3>AI Development</h3>
-    <p>Custom AI solutions for businesses, automation, and intelligent systems.</p>
-  </div>
-  <div class="ai-card">
-    <i class="fas fa-laptop-code"></i>
-    <h3>Software Solutions</h3>
-    <p>Web, mobile, and desktop applications tailored to your needs.</p>
-  </div>
-  <div class="ai-card">
-    <i class="fas fa-network-wired"></i>
-    <h3>Networking & Security</h3>
-    <p>Secure network setup, IT infrastructure, and cybersecurity services.</p>
-  </div>
-  <div class="ai-card">
-    <i class="fas fa-cloud"></i>
-    <h3>Cloud Services</h3>
-    <p>Cloud storage, hosting, and scalable solutions for modern enterprises.</p>
-  </div>
+<!-- Content Section -->
+<section class="content-section">
+  <h3>AI Solutions</h3>
+  <p>We provide AI-powered tools and services to automate tasks, enhance business efficiency, and improve customer experience.</p>
+  
+  <h3>Tech Services</h3>
+  <p>Our team offers tech solutions ranging from web development, mobile apps, to IoT and smart device integration.</p>
+  
+  <h3>Consultation</h3>
+  <p>Get personalized advice and support for integrating AI and modern technology into your business workflow.</p>
 </section>
 
 <!-- Footer -->
-<footer style="padding:20px;text-align:center;background:#1a1a1a;color:#f5c77a;">
+<footer>
   © 2025 BMGDollarsTech Hub. All Rights Reserved.
 </footer>
 
-<!-- Floating Buttons and AI Chat -->
-<!-- Same as index.html -->
+<!-- WhatsApp Floating Button -->
 <a href="https://wa.me/254700692492" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
+
+<!-- AI Chat Floating Icon -->
+<div id="chat-icon">
+  <img src="https://img.icons8.com/color/48/000000/chat--v1.png" alt="Chat"/>
+</div>
+
+<!-- AI Chat Window -->
+<div id="ai-chatbot">
+  <div id="chat-header">Chat with us!</div>
+  <div id="chat-body"></div>
+  <div id="chat-input-container">
+    <input id="chat-input" type="text" placeholder="Type your message..." />
+    <button id="chat-send">Send</button>
+  </div>
+</div>
+
+<script>
+const chatContainer = document.getElementById("ai-chatbot");
+const chatHeader = document.getElementById("chat-header");
+const chatBody = document.getElementById("chat-body");
+const chatInput = document.getElementById("chat-input");
+const chatSend = document.getElementById("chat-send");
+const chatIcon = document.getElementById("chat-icon");
+
+// Toggle chat visibility
+chatIcon.onclick = () => { chatContainer.style.display = "flex"; chatIcon.style.display = "none"; }
+chatHeader.onclick = () => { chatContainer.style.display = "none"; chatIcon.style.display = "block"; }
+
+// Append message function
+function appendMessage(text, sender){
+  const msgDiv = document.createElement("div");
+  msgDiv.className = "message " + sender;
+  msgDiv.innerText = text;
+  chatBody.appendChild(msgDiv);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// Typing indicator
+function showTyping(){ const typingDiv=document.createElement("div"); typingDiv.className="typing"; typingDiv.id="typing-indicator"; chatBody.appendChild(typingDiv); chatBody.scrollTop=chatBody.scrollHeight; }
+function removeTyping(){ const typing=document.getElementById("typing-indicator"); if(typing) typing.remove(); }
+
+// Send message
+chatSend.onclick = async ()=>{
+  const msg = chatInput.value.trim();
+  if(!msg) return;
+  appendMessage(msg,"user");
+  chatInput.value='';
+  try{
+    showTyping();
+    const res = await fetch('/chat',{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message:msg, userId:"user123"})});
+    const data = await res.json();
+    removeTyping();
+    appendMessage(data.reply,"bot");
+  } catch(err){
+    removeTyping();
+    appendMessage("Sorry, something went wrong.","bot");
+  }
+};
+
+// Send on Enter
+chatInput.addEventListener("keypress", function(e){ if(e.key==="Enter"){ chatSend.click(); e.preventDefault(); } });
+
+// Auto-greeting once per session
+window.addEventListener('load', () => {
+  if(!sessionStorage.getItem('greeted')){
+    chatContainer.style.display="flex";
+    chatIcon.style.display="none";
+    appendMessage("Hello! 👋 How can we help you today?", "bot");
+    sessionStorage.setItem('greeted', 'true');
+  }
+});
+</script>
 
 </body>
 </html>
