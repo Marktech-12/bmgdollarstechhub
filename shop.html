@@ -1,72 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shop – BMGDollarsTech Hub</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-    body{background:#0b0b0b;color:#fff}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shop – BMGDollarsTech Hub</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+  body{background:#0b0b0b;color:#fff}
 
-    header{padding:60px 60px;text-align:center}
-    header h2{font-size:42px;margin-bottom:15px;color:#f5c77a}
-    header p{font-size:18px;color:#ddd}
+  nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 40px; background:#1a1a1a; position:sticky; top:0; z-index:1000;
+  }
+  nav h1{color:#f5c77a;}
+  nav ul{list-style:none; display:flex; gap:20px;}
+  nav ul li a{color:#fff; text-decoration:none; font-weight:500;}
+  nav ul li a:hover{color:#f5c77a;}
 
-    .products-container{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:20px;
-      padding:40px 60px;
-    }
-    .product-card{
-      background:#1a1a1a;
-      border-radius:15px;
-      overflow:hidden;
-      text-align:center;
-      transition: transform 0.3s;
-    }
-    .product-card:hover{transform: translateY(-10px)}
-    .product-card img{width:100%;height:200px;object-fit:cover}
-    .product-card h3{margin:15px 0 5px;color:#f5c77a}
-    .product-card p{color:#ddd;margin-bottom:10px}
-    .product-card .price{font-weight:bold;color:#f5c77a;margin-bottom:10px}
-    .product-card a{
-      display:inline-block;
-      margin-bottom:15px;
-      padding:10px 20px;
-      background:#f5c77a;
-      color:#000;
-      text-decoration:none;
-      border-radius:20px;
-      font-weight:600;
-    }
-    .product-card a:hover{background:#e0b14a}
+  header{padding:60px 60px;text-align:center}
+  header h2{font-size:42px;margin-bottom:15px;color:#f5c77a}
+  header p{font-size:18px;color:#ddd}
 
-    /* WhatsApp Floating Button */
-    .whatsapp-float{
-      position:fixed;
-      bottom:25px;
-      right:25px;
-      background:#25d366;
-      color:#fff;
-      width:60px;
-      height:60px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:30px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.4);
-      z-index:1000;
-      text-decoration:none;
-    }
-    .whatsapp-float:hover{background:#1ebe5d}
+  .products-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:40px 60px;
+  }
+  .product-card{
+    background:#1a1a1a;
+    border-radius:15px;
+    overflow:hidden;
+    text-align:center;
+    transition: transform 0.3s;
+  }
+  .product-card:hover{transform: translateY(-10px)}
+  .product-card img{width:100%;height:200px;object-fit:cover}
+  .product-card h3{margin:15px 0 5px;color:#f5c77a}
+  .product-card p{color:#ddd;margin-bottom:10px}
+  .product-card .price{font-weight:bold;color:#f5c77a;margin-bottom:10px}
+  .product-card a{
+    display:inline-block;
+    margin-bottom:15px;
+    padding:10px 20px;
+    background:#f5c77a;
+    color:#000;
+    text-decoration:none;
+    border-radius:20px;
+    font-weight:600;
+  }
+  .product-card a:hover{background:#e0b14a}
 
-    @media(max-width:768px){header{padding:40px 20px}.products-container{padding:20px}}
-  </style>
+  @media(max-width:768px){
+    header{padding:40px 20px}
+    .products-container{padding:20px}
+    nav{flex-direction:column; gap:10px;}
+  }
+</style>
 </head>
 <body>
+
+<!-- Navigation -->
+<nav>
+  <h1>BMGDollarsTech Hub</h1>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="ai-tech.html">AI & Tech</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
 
 <!-- Main Content -->
 <header>
@@ -80,7 +85,7 @@
     <h3>Stylish Jacket</h3>
     <p>Premium quality fashion wear</p>
     <div class="price">$50</div>
-    <a href="https://wa.me/254700692492?text=I%20want%20to%20buy%20Stylish%20Jacket">Buy Now</a>
+    <a href="https://wa.me/254700692492?text=I%20want%20to%20buy%20Stylish%20Jacket" target="_blank">Buy Now</a>
   </div>
 
   <div class="product-card">
@@ -88,29 +93,19 @@
     <h3>Beauty Cream</h3>
     <p>Glow & radiance for your skin</p>
     <div class="price">$25</div>
-    <a href="https://wa.me/254700692492?text=I%20want%20to%20buy%20Beauty%20Cream">Buy Now</a>
+    <a href="https://wa.me/254700692492?text=I%20want%20to%20buy%20Beauty%20Cream" target="_blank">Buy Now</a>
   </div>
 
   <!-- Add more products here -->
 </section>
 
-<!-- Script to load shared header and footer -->
-<script>
-  // Load header
-  fetch('includes/header.html')
-    .then(response => response.text())
-    .then(data => {
-      document.body.insertAdjacentHTML('afterbegin', data);
-    });
+<!-- Footer -->
+<footer style="padding:20px;text-align:center;background:#1a1a1a;color:#f5c77a;">
+  © 2025 BMGDollarsTech Hub. All Rights Reserved.
+</footer>
 
-  // Load footer
-  fetch('includes/footer.html')
-    .then(response => response.text())
-    .then(data => {
-      document.body.insertAdjacentHTML('beforeend', data);
-    });
-</script>
+<!-- Floating Buttons and AI Chat -->
+<!-- Paste the floating chat/WhatsApp snippet here (same as index.html) -->
 
 </body>
 </html>
-
