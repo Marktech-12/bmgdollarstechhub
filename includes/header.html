@@ -1,10 +1,115 @@
-<nav>
-  <h1>BMGDollarsTech Hub</h1>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="shop.html">Shop</a></li>
-    <li><a href="ai-tech.html">AI & Tech</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
+<header>
+  <div class="nav-container">
+    <h1 class="brand">BMGDollarsTech Hub</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="ai-tech.html">AI & Tech</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* Header container */
+  header {
+    background: #1a1a1a;
+    padding: 15px 30px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .brand {
+    color: #f5c77a;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  nav ul li a:hover,
+  nav ul li a.active {
+    color: #f5c77a;
+  }
+
+  /* Hamburger menu */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+  }
+
+  .hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    nav ul {
+      position: absolute;
+      top: 65px;
+      right: 0;
+      background: #1a1a1a;
+      flex-direction: column;
+      width: 200px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      padding: 20px;
+      border-radius: 10px 0 0 10px;
+    }
+
+    nav ul.show {
+      transform: translateX(0);
+    }
+
+    .hamburger {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector("nav ul");
+
+  hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+    // Animate hamburger
+    hamburger.classList.toggle("active");
+  });
+</script>
