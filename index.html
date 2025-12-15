@@ -52,44 +52,6 @@
   .service-card i{font-size:30px;color:#f5c77a;margin-bottom:10px}
   .service-card h4{margin-bottom:8px}
 
-  /* Chatbot */
-  .chatbot-section{padding:50px 20px; background:#0d0d0d; text-align:center}
-  .chat-container{
-    max-width:500px; 
-    margin:0 auto; 
-    background:#1a1a1a; 
-    padding:20px; 
-    border-radius:15px; 
-    display:flex; 
-    flex-direction:column;
-  }
-  .chat-box{
-    height:300px; 
-    overflow-y:auto; 
-    border:1px solid #333; 
-    padding:10px; 
-    border-radius:10px;
-    margin-bottom:10px;
-  }
-  .chat-box p{margin:5px 0;}
-  input{
-    width:calc(100% - 22px); 
-    padding:10px; 
-    border-radius:10px; 
-    border:none;
-    margin-bottom:10px;
-  }
-  button{
-    width:100%; 
-    padding:10px; 
-    border:none; 
-    border-radius:10px; 
-    background:#f5c77a; 
-    color:#000; 
-    font-weight:bold; 
-    cursor:pointer;
-  }
-
   /* WhatsApp Floating Button */
   .whatsapp-float{
     position:fixed;
@@ -110,11 +72,35 @@
   }
   .whatsapp-float:hover{background:#1ebe5d}
 
-  @media(max-width:768px){
-    .hero{padding:0 20px}
-    .hero h2{font-size:38px}
-    .services-preview{padding:30px 20px}
+  /* AI Chatbot Floating Icon & Window */
+  #chat-icon { position: fixed; bottom:100px; right:25px; width:60px; height:60px; cursor:pointer; z-index:10000; }
+  #chat-icon img { width:100%; height:100%; border-radius:50%; box-shadow:0 4px 10px rgba(0,0,0,0.3); }
+
+  #ai-chatbot {
+    position: fixed; bottom:100px; right:25px; width:350px; max-width:90%; z-index:9999;
+    border-radius: 15px; overflow: hidden; display:none; flex-direction:column;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3); font-family: Arial, sans-serif; animation:fadeIn 0.3s ease-in-out;
   }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+
+  #chat-header { background:#007BFF; color:#fff; font-weight:bold; padding:12px; cursor:pointer; text-align:center; border-bottom:1px solid #0056b3; }
+  #chat-body { background:#f9f9f9; height:300px; padding:12px; overflow-y:auto; display:flex; flex-direction:column; }
+  .message { margin:6px 0; padding:10px 14px; border-radius:20px; max-width:75%; word-wrap:break-word; line-height:1.4; animation:slideIn 0.2s ease; }
+  .message.user { background:#DCF8C6; align-self:flex-end; text-align:right; }
+  .message.bot { background:#E2E2E2; align-self:flex-start; text-align:left; }
+  @keyframes slideIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
+
+  .typing { width:40px; height:12px; background:#E2E2E2; border-radius:6px; margin:4px 0; align-self:flex-start; animation:blink 1s infinite; }
+  @keyframes blink { 0%,100% {opacity:0.3;} 50%{opacity:1;} }
+
+  #chat-input-container { display:flex; border-top:1px solid #ccc; background:#fff; }
+  #chat-input { flex:1; border:none; padding:10px; font-size:14px; }
+  #chat-input:focus { outline:none; }
+  #chat-send { background:#007BFF; color:#fff; border:none; padding:0 15px; cursor:pointer; transition: background 0.2s; }
+  #chat-send:hover { background:#0056b3; }
+
+  @media(max-width:768px){ .hero{padding:0 20px} .hero h2{font-size:38px} .services-preview{padding:30px 20px} }
+  @media(max-width:400px){ #ai-chatbot{width:90%; bottom:70px;} #chat-body{height:250px;} #chat-icon{bottom:70px; width:50px; height:50px;} }
 </style>
 </head>
 <body>
@@ -153,64 +139,86 @@
   </div>
 </section>
 
-<!-- Chatbot Section -->
-<section class="chatbot-section">
-  <h2 style="color:#f5c77a; margin-bottom:20px;">Chat with Our AI Assistant</h2>
-  <div class="chat-container">
-    <div class="chat-box" id="chatBox"></div>
-    <input type="text" id="userInput" placeholder="Type your message...">
-    <button onclick="sendMessage()">Send</button>
-  </div>
-</section>
-
 <!-- WhatsApp Floating Button -->
 <a href="https://wa.me/254700692492" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
 
-<!-- Chatbot Script -->
+<!-- AI Chat Floating Icon -->
+<div id="chat-icon">
+  <img src="https://img.icons8.com/color/48/000000/chat--v1.png" alt="Chat" />
+</div>
+
+<!-- AI Chat Window -->
+<div id="ai-chatbot">
+  <div id="chat-header">Chat with us!</div>
+  <div id="chat-body"></div>
+  <div id="chat-input-container">
+    <input id="chat-input" type="text" placeholder="Type your message..." />
+    <button id="chat-send">Send</button>
+  </div>
+</div>
+
 <script>
-const memory = {}; // store per-user conversation
+// Elements
+const chatContainer = document.getElementById("ai-chatbot");
+const chatHeader = document.getElementById("chat-header");
+const chatBody = document.getElementById("chat-body");
+const chatInput = document.getElementById("chat-input");
+const chatSend = document.getElementById("chat-send");
+const chatIcon = document.getElementById("chat-icon");
 
-async function sendMessage() {
-  const input = document.getElementById('userInput');
-  const chatBox = document.getElementById('chatBox');
-  const userText = input.value.trim();
-  if(!userText) return;
+// Toggle chat visibility
+chatIcon.onclick = () => { chatContainer.style.display = "flex"; chatIcon.style.display = "none"; }
+chatHeader.onclick = () => { chatContainer.style.display = "none"; chatIcon.style.display = "block"; }
 
-  // Display user message
-  const userMsg = document.createElement('p');
-  userMsg.style.textAlign = 'right';
-  userMsg.style.color = '#f5c77a';
-  userMsg.innerText = userText;
-  chatBox.appendChild(userMsg);
-  input.value = '';
+// Append message function
+function appendMessage(text, sender){
+  const msgDiv = document.createElement("div");
+  msgDiv.className = "message " + sender;
+  msgDiv.innerText = text;
+  chatBody.appendChild(msgDiv);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
 
-  // Send to backend AI
-  try {
-    const res = await fetch('/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: userText, userId: "user123" }) // replace userId with unique session or phone
+// Typing indicator
+function showTyping(){ const typingDiv=document.createElement("div"); typingDiv.className="typing"; typingDiv.id="typing-indicator"; chatBody.appendChild(typingDiv); chatBody.scrollTop=chatBody.scrollHeight; }
+function removeTyping(){ const typing=document.getElementById("typing-indicator"); if(typing) typing.remove(); }
+
+// Send message
+chatSend.onclick = async ()=>{
+  const msg = chatInput.value.trim();
+  if(!msg) return;
+  appendMessage(msg,"user");
+  chatInput.value='';
+  try{
+    showTyping();
+    const res = await fetch('/chat',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({message:msg, userId:"user123"})
     });
     const data = await res.json();
-
-    const botMsg = document.createElement('p');
-    botMsg.style.textAlign = 'left';
-    botMsg.style.color = '#25d366';
-    botMsg.innerText = data.reply || "AI didn't respond. Try again.";
-    chatBox.appendChild(botMsg);
-
-    chatBox.scrollTop = chatBox.scrollHeight;
-  } catch(err) {
-    const botMsg = document.createElement('p');
-    botMsg.style.textAlign = 'left';
-    botMsg.style.color = '#25d366';
-    botMsg.innerText = "Oops! AI is not responding. Try again.";
-    chatBox.appendChild(botMsg);
-    chatBox.scrollTop = chatBox.scrollHeight;
+    removeTyping();
+    appendMessage(data.reply,"bot");
+  } catch(err){
+    removeTyping();
+    appendMessage("Sorry, something went wrong.","bot");
   }
-}
+};
+
+// Send on Enter
+chatInput.addEventListener("keypress", function(e){ if(e.key==="Enter"){ chatSend.click(); e.preventDefault(); } });
+
+// Auto-greeting once per session
+window.addEventListener('load', () => {
+  if(!sessionStorage.getItem('greeted')){
+    chatContainer.style.display="flex";
+    chatIcon.style.display="none";
+    appendMessage("Hello! 👋 How can we help you today?", "bot");
+    sessionStorage.setItem('greeted', 'true');
+  }
+});
 </script>
 
 </body>
