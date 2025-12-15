@@ -19,7 +19,6 @@
 </header>
 
 <style>
-  /* Header container */
   header {
     background: #1a1a1a;
     padding: 15px 30px;
@@ -29,7 +28,6 @@
     z-index: 1000;
     box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   }
-
   .nav-container {
     display: flex;
     justify-content: space-between;
@@ -37,39 +35,32 @@
     max-width: 1200px;
     margin: auto;
   }
-
   .brand {
     color: #f5c77a;
     font-size: 24px;
     font-weight: bold;
   }
-
   nav ul {
     list-style: none;
     display: flex;
     gap: 25px;
   }
-
   nav ul li a {
     text-decoration: none;
     color: #fff;
     font-weight: 500;
     transition: color 0.3s;
   }
-
   nav ul li a:hover,
   nav ul li a.active {
     color: #f5c77a;
   }
-
-  /* Hamburger menu */
   .hamburger {
     display: none;
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
   }
-
   .hamburger span {
     width: 25px;
     height: 3px;
@@ -77,8 +68,6 @@
     border-radius: 2px;
     transition: all 0.3s;
   }
-
-  /* Mobile */
   @media (max-width: 768px) {
     nav ul {
       position: absolute;
@@ -92,11 +81,9 @@
       padding: 20px;
       border-radius: 10px 0 0 10px;
     }
-
     nav ul.show {
       transform: translateX(0);
     }
-
     .hamburger {
       display: flex;
     }
@@ -106,10 +93,8 @@
 <script>
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector("nav ul");
-
   hamburger.addEventListener("click", () => {
     navLinks.classList.toggle("show");
-    // Animate hamburger
     hamburger.classList.toggle("active");
   });
 </script>
