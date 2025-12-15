@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMGDollarsTech Hub</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+    body{background:#0b0b0b;color:#fff}
+    header{
+      min-height:100vh;
+      background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      flex-direction:column;
+    }
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 60px;
+    }
+    nav h1{color:#f5c77a;font-size:26px;letter-spacing:1px}
+    nav ul{display:flex;gap:25px;list-style:none}
+    nav ul li a{color:#fff;text-decoration:none;font-weight:500}
+    nav ul li a:hover{color:#f5c77a}
+
+    .hero{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      padding:0 60px;
+      max-width:900px;
+    }
+    .hero h2{
+      font-size:52px;
+      line-height:1.2;
+      margin-bottom:20px;
+    }
+    .hero span{color:#f5c77a}
+    .hero p{font-size:18px;color:#ddd;margin-bottom:30px}
+
+    .hero-buttons a{
+      display:inline-block;
+      margin-right:15px;
+      padding:14px 30px;
+      border-radius:30px;
+      text-decoration:none;
+      font-weight:600;
+    }
+    .btn-primary{
+      background:#f5c77a;
+      color:#000;
+    }
+    .btn-secondary{
+      border:2px solid #f5c77a;
+      color:#f5c77a;
+    }
+    .btn-secondary:hover{background:#f5c77a;color:#000}
+
+    .services-preview{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:20px;
+      padding:40px 60px;
+      background:#111;
+    }
+    .service-card{
+      background:#1a1a1a;
+      padding:25px;
+      border-radius:15px;
+      text-align:center;
+    }
+    .service-card i{font-size:30px;color:#f5c77a;margin-bottom:10px}
+    .service-card h4{margin-bottom:8px}
+    footer{
+      text-align:center;
+      padding:20px;
+      font-size:14px;
+      background:#000;
+      color:#aaa;
+    }
+
+    @media(max-width:768px){
+      nav{padding:20px}
+      .hero{padding:0 20px}
+      .hero h2{font-size:38px}
+      .services-preview{padding:30px 20px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <h1>BMGDollarsTech Hub</h1>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">AI & Tech</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <h2>Your One‑Stop <span>Digital & Lifestyle</span> Hub</h2>
+    <p>Technology, Fashion, Cosmetics, Kinyozi & Salon — powered by innovation and quality service.</p>
+    <div class="hero-buttons">
+      <a href="#" class="btn-primary">Explore Services</a>
+      <a href="#" class="btn-secondary">Visit Shop</a>
+    </div>
+  </section>
+</header>
+
+<section class="services-preview">
+  <div class="service-card">
+    <i class="fas fa-laptop-code"></i>
+    <h4>Tech & AI</h4>
+    <p>Modern tech solutions and AI‑powered services.</p>
+  </div>
+  <div class="service-card">
+    <i class="fas fa-tshirt"></i>
+    <h4>Fashion</h4>
+    <p>Trendy outfits and premium styles.</p>
+  </div>
+  <div class="service-card">
+    <i class="fas fa-spray-can-sparkles"></i>
+    <h4>Cosmetics</h4>
+    <p>Beauty products that inspire confidence.</p>
+  </div>
+  <div class="service-card">
+    <i class="fas fa-scissors"></i>
+    <h4>Kinyozi & Salon</h4>
+    <p>Professional grooming & beauty care.</p>
+  </div>
+</section>
+
+<footer>
+  © 2025 BMGDollarsTech Hub. All Rights Reserved.
+</footer>
+
+</body>
+</html>
 
