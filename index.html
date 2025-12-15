@@ -170,38 +170,46 @@
 
 <!-- Chatbot Script -->
 <script>
-function sendMessage() {
+const memory = {}; // store per-user conversation
+
+async function sendMessage() {
   const input = document.getElementById('userInput');
   const chatBox = document.getElementById('chatBox');
   const userText = input.value.trim();
-  if(userText === '') return;
+  if(!userText) return;
 
-  // User message
+  // Display user message
   const userMsg = document.createElement('p');
   userMsg.style.textAlign = 'right';
   userMsg.style.color = '#f5c77a';
   userMsg.innerText = userText;
   chatBox.appendChild(userMsg);
-
   input.value = '';
 
-  // Bot response
-  const botMsg = document.createElement('p');
-  botMsg.style.textAlign = 'left';
-  botMsg.style.color = '#25d366';
-  botMsg.innerText = getBotResponse(userText);
-  chatBox.appendChild(botMsg);
+  // Send to backend AI
+  try {
+    const res = await fetch('/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: userText, userId: "user123" }) // replace userId with unique session or phone
+    });
+    const data = await res.json();
 
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
+    const botMsg = document.createElement('p');
+    botMsg.style.textAlign = 'left';
+    botMsg.style.color = '#25d366';
+    botMsg.innerText = data.reply || "AI didn't respond. Try again.";
+    chatBox.appendChild(botMsg);
 
-function getBotResponse(message) {
-  message = message.toLowerCase();
-  if(message.includes('hello')) return 'Hello! How can I assist you today?';
-  if(message.includes('services')) return 'We offer Tech, AI, Fashion, Cosmetics, and Salon services.';
-  if(message.includes('shop')) return 'Check out our shop page for products!';
-  if(message.includes('contact')) return 'You can reach us via WhatsApp or email on the Contact page.';
-  return "I'm still learning! Can you rephrase?";
+    chatBox.scrollTop = chatBox.scrollHeight;
+  } catch(err) {
+    const botMsg = document.createElement('p');
+    botMsg.style.textAlign = 'left';
+    botMsg.style.color = '#25d366';
+    botMsg.innerText = "Oops! AI is not responding. Try again.";
+    chatBox.appendChild(botMsg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
 }
 </script>
 
